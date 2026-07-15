@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Lost Items</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+</head>
+
+<body>
+
+<div class="container py-5">
+
+    <div class="text-center mb-5">
+
+        <h1 class="gradient-text fw-bold">
+
+            <i class="fa-solid fa-magnifying-glass-location"></i>
+
+            Lost Items
+
+        </h1>
+
+        <p class="text-light">
+
+            Browse all reported lost items on campus.
+
+        </p>
+
+    </div>
+
+    <div class="row g-4">
+
+        {% for item in items %}
+
+        <div class="col-lg-4 col-md-6">
+
+            <div class="glass-card item-card">
+
+                {% if item["image"] %}
+
+                <img src="{{ url_for('static', filename='uploads/' + item["image"]) }}"
+                     class="item-image">
+
+                {% else %}
+
+                <div class="item-icon">
+
+                    <i class="fa-solid fa-box-open"></i>
+
+                </div>
+
+                {% endif %}
+
+                <h4>{{ item["item_name"] }}</h4>
+
+                <span class="badge bg-primary">
+
+                    {{ item["category"] }}
+
+                </span>
+
+                <hr>
+
+                <p>
+
+                    <i class="fa-solid fa-location-dot"></i>
+
+                    {{ item["location"] }}
+
+                </p>
+
+                <div class="mb-3">
+
+{% if item["status"] == "Lost" %}
+
+<span class="badge bg-danger">
+    Lost
+</span>
+
+{% elif item["status"] == "Matched" %}
+
+<span class="badge bg-primary">
+    Matched
+</span>
+
+{% elif item["status"] == "Claim Pending" %}
+
+<span class="badge bg-warning text-dark">
+    Claim Pending
+</span>
+
+{% elif item["status"] == "Returned" %}
+
+<span class="badge bg-success">
+    Returned
+</span>
+
+{% endif %}
+
+</div>
+
+                <p>
+
+                    <i class="fa-solid fa-calendar"></i>
+
+                    {{ item["date"] }}
+
+                </p>
+
+                <p>
+
+                    {{ item["description"][:100] }}...
+
+                </p>
+
+                <a href="{{ url_for('item_details', item_id=item["id"]) }}"
+                   class="btn btn-primary w-100">
+
+                    View Details
+
+                </a>
+
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+
+</body>
+
+</html>

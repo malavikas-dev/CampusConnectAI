@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container py-5">
+
+    <h2 class="section-title mb-4">
+        Notifications
+    </h2>
+
+    {% if notifications %}
+
+        {% for n in notifications %}
+
+        <div class="glass-card mb-3">
+
+            {{ n["message"] }}
+
+        </div>
+
+        {% endfor %}
+
+    {% else %}
+
+        <div class="glass-card">
+
+            No notifications yet.
+
+        </div>
+
+    {% endif %}
+
+</div>
+
+{% endblock %}

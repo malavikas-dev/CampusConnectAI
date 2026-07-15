@@ -1,0 +1,137 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container py-5">
+
+    <div class="glass-card mx-auto" style="max-width:700px;">
+
+        <h2 class="section-title text-center mb-4">
+            Report Found Item
+        </h2>
+
+        <form action="/report-found"
+              method="POST"
+              enctype="multipart/form-data">
+
+            <div class="mb-3">
+
+                <label class="form-label">Item Name</label>
+
+                <input
+                    type="text"
+                    class="form-control"
+                    name="item_name"
+                    required>
+
+            </div>
+
+            <div class="mb-3">
+
+                <label class="form-label">Category</label>
+
+                <select
+                    class="form-select"
+                    name="category">
+
+                    <option>Bag</option>
+                    <option>Wallet</option>
+                    <option>Phone</option>
+                    <option>ID Card</option>
+                    <option>Laptop</option>
+                    <option>Keys</option>
+
+                </select>
+
+            </div>
+
+            <div class="mb-3">
+
+                <label class="form-label">Description</label>
+
+                <textarea
+                    class="form-control"
+                    rows="4"
+                    name="description"></textarea>
+
+            </div>
+
+            <div class="mb-3">
+
+                <label class="form-label">
+                    Found Location
+                </label>
+
+                <input
+                    type="text"
+                    class="form-control"
+                    name="location">
+
+            </div>
+
+            <div class="mb-3">
+
+                <label class="form-label">
+                    Date Found
+                </label>
+
+                <input
+                    type="date"
+                    class="form-control"
+                    name="date">
+
+            </div>
+
+            <div class="mb-3">
+
+                <label class="form-label">
+                    Finder Name
+                </label>
+
+                <input
+                    type="text"
+                    class="form-control"
+                    name="finder">
+
+            </div>
+
+            <div class="mb-3">
+
+                <label class="form-label">
+                    Phone Number
+                </label>
+
+                <input
+                    type="text"
+                    class="form-control"
+                    name="phone">
+
+            </div>
+
+            <div class="mb-4">
+
+                <label class="form-label">
+                    Upload Image
+                </label>
+
+                <input
+                    type="file"
+                    class="form-control"
+                    name="image">
+
+            </div>
+
+            <button
+                class="btn btn-success w-100">
+
+                Report Found Item
+
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock %}

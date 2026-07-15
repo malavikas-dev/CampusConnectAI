@@ -1,0 +1,36 @@
+/* ===========================
+   ADMIN LOGIN
+=========================== */
+
+.form-card{
+
+    max-width:550px;
+
+    margin:auto;
+
+}
+
+
+    height:120px;
+
+    border-radius:50%;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    margin:auto;
+
+    box-shadow:0 0 40px rgba(59,130,246,.35);
+
+}
+
+.form-card .btn{
+
+    padding:15px;
+
+    font-size:18px;
+
+}

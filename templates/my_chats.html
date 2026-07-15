@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container py-5">
+
+<h2 class="mb-4">
+💬 My Chats
+</h2>
+
+{% if rooms %}
+
+<div class="row">
+
+{% for room in rooms %}
+
+<div class="col-md-6 mb-4">
+
+<div class="glass-card p-4">
+
+<h4>
+
+👜 {{ room["item_name"] }}
+
+</h4>
+
+<p>
+
+Finder:
+<strong>{{ room["finder"] }}</strong>
+
+</p>
+
+<a
+href="{{ url_for('chat', room_id=room['id']) }}"
+class="btn btn-primary">
+
+Open Chat
+
+</a>
+
+</div>
+
+</div>
+
+{% endfor %}
+
+</div>
+
+{% else %}
+
+<div class="alert alert-info">
+
+No chats yet.
+
+</div>
+
+{% endif %}
+
+</div>
+
+{% endblock %}

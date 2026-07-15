@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container py-5">
+
+    <div class="row justify-content-center">
+
+        <div class="col-lg-8">
+
+            <div class="glass-card">
+
+                {% if item[8] %}
+
+                <img
+                    src="{{ url_for('static', filename='uploads/' + item[8]) }}"
+                    class="img-fluid rounded mb-4">
+
+                {% endif %}
+
+                <span class="badge bg-success mb-3">
+
+                    FOUND
+
+                </span>
+
+                <h2>{{ item[1] }}</h2>
+
+                <p>{{ item[3] }}</p>
+
+                <hr>
+
+                <p><strong>Category:</strong> {{ item[2] }}</p>
+
+                <p><strong>Location:</strong> {{ item[4] }}</p>
+
+                <p><strong>Date:</strong> {{ item[5] }}</p>
+
+                <p><strong>Finder:</strong> {{ item[6] }}</p>
+
+                <p><strong>Phone:</strong> {{ item[7] }}</p>
+
+                <a href="{{ url_for('claim_item', item_id=item[0]) }}"
+   class="btn btn-warning w-100 mt-4">
+
+    <i class="bi bi-hand-index-thumb-fill"></i>
+
+    Claim This Item
+
+</a>
+
+                <a href="{{ url_for('view_found') }}"
+                   class="btn btn-success">
+
+                    Back
+
+                <a
+    href="{{ url_for('start_chat', found_item_id=item[0]) }}"
+    class="btn btn-success w-100 mt-3">
+    💬 Chat with Finder
+</a>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

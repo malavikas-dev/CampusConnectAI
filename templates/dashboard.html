@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="glass-card p-4 mb-4">
+    <h2>👋 Welcome back, {{ session["user_name"] }}!</h2>
+    <p class="text-muted">
+        Manage your lost items, found items, chats and notifications from one place.
+    </p>
+</div>
+<div class="container py-5">
+
+<h2 class="section-title mb-4">
+My Lost Items
+</h2>
+
+<div class="row">
+
+{% for item in items %}
+
+<div class="col-md-4 mb-4">
+
+<div class="glass-card">
+
+{% if item.image %}
+<img
+src="{{ url_for('static', filename='uploads/' + item.image) }}"
+class="img-fluid rounded mb-3">
+{% endif %}
+
+<h4>{{ item.item_name }}</h4>
+
+<p>{{ item.description }}</p>
+
+<span class="badge bg-primary">
+{{ item.status }}
+</span>
+
+</div>
+
+</div>
+
+{% endfor %}
+
+</div>
+
+</div>
+
+{% endblock %}

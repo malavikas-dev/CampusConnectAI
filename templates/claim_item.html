@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container py-5">
+
+    <div class="glass-card mx-auto" style="max-width:700px;">
+
+        <h2 class="section-title text-center mb-4">
+            Claim This Item
+        </h2>
+
+        <form method="POST">
+
+            <div class="mb-3">
+
+                <label class="form-label">
+                    Your Name
+                </label>
+
+                <input
+                    type="text"
+                    class="form-control"
+                    name="name"
+                    required>
+
+            </div>
+
+            <div class="mb-3">
+
+                <label class="form-label">
+                    Phone Number
+                </label>
+
+                <input
+                    type="text"
+                    class="form-control"
+                    name="phone"
+                    required>
+
+            </div>
+
+            <div class="mb-4">
+
+                <label class="form-label">
+                    Why is this your item?
+                </label>
+
+                <textarea
+                    class="form-control"
+                    rows="5"
+                    name="message"
+                    required></textarea>
+
+            </div>
+
+            <button
+                class="btn btn-success w-100">
+
+                Submit Claim
+
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock %}

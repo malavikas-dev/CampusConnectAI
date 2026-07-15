@@ -1,0 +1,297 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container py-5">
+
+    <h1 class="section-title text-center mb-5">
+        <i class="fa-solid fa-chart-line"></i>
+        Admin Dashboard
+    </h1>
+
+    <!-- Statistics Cards -->
+    <div class="row g-4 mb-5">
+
+        <div class="col-lg-4">
+            <div class="glass-card text-center dashboard-card">
+                <div class="dashboard-icon bg-primary">
+                    <i class="fa-solid fa-box-open"></i>
+                </div>
+
+                <h2>{{ lost_count }}</h2>
+                <p>Total Lost Items</p>
+            </div>
+        </div>
+
+        <div class="col-lg-4">
+            <div class="glass-card text-center dashboard-card">
+                <div class="dashboard-icon bg-success">
+                    <i class="fa-solid fa-hand-holding"></i>
+                </div>
+
+                <h2>{{ found_count }}</h2>
+                <p>Total Found Items</p>
+            </div>
+        </div>
+
+        <div class="col-lg-4">
+            <div class="glass-card text-center dashboard-card">
+                <div class="dashboard-icon bg-warning">
+                    <i class="fa-solid fa-handshake"></i>
+                </div>
+
+                <h2>{{ claim_count }}</h2>
+                <p>Total Claims</p>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Statistics Chart -->
+    <div class="glass-card mb-5">
+
+        <h3 class="mb-4">
+            📊 Campus Statistics
+        </h3>
+
+        <canvas id="statsChart"></canvas>
+
+    </div>
+
+    <!-- Recent Lost Items -->
+    <div class="glass-card mb-5">
+
+        <h3 class="mb-4">
+            <i class="fa-solid fa-magnifying-glass-location"></i>
+            <!-- Recent Lost Items -->
+
+<div class="glass-card mb-5">
+
+    <h3 class="mb-4">
+
+        <i class="fa-solid fa-magnifying-glass-location"></i>
+
+        Recent Lost Items
+
+    </h3>
+
+    {% for item in lost_items %}
+
+    <div class="list-group-item bg-transparent text-light border-secondary mb-3">
+
+        <h5>{{ item["item_name"] }}</h5>
+
+        <p>
+
+            <i class="fa-solid fa-location-dot"></i>
+
+            {{ item["location"] }}
+
+        </p>
+
+        <p>
+
+            Current Status:
+
+            <span class="badge bg-info">
+
+                {{ item["status"] }}
+
+            </span>
+
+        </p>
+
+        <form
+            action="{{ url_for('update_lost', item_id=item['id']) }}"
+            method="POST">
+
+            <div class="row">
+
+                <div class="col-md-8">
+
+                    <select
+                        name="status"
+                        class="form-select">
+
+                        <option value="Lost">Lost</option>
+
+                        <option value="Matched">Matched</option>
+
+                        <option value="Claim Pending">Claim Pending</option>
+
+                        <option value="Returned">Returned</option>
+
+                    </select>
+
+                </div>
+
+                <div class="col-md-4">
+
+                    <button
+                        class="btn btn-primary w-100">
+
+                        Update
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </form>
+
+    </div>
+
+    {% endfor %}
+
+</div>
+
+    <!-- Recent Found Items -->
+    <div class="glass-card mb-5">
+
+        <h3 class="mb-4">
+            <i class="fa-solid fa-box"></i>
+            Recent Found Items
+        </h3>
+
+        <div class="list-group">
+
+            {% for item in found_items %}
+
+            <div class="list-group-item bg-transparent text-light border-secondary">
+
+                <strong>{{ item["item_name"] }}</strong>
+
+                <span class="float-end">
+
+                    <i class="fa-solid fa-location-dot"></i>
+
+                    {{ item["location"] }}
+
+                </span>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+    <!-- Recent Claims -->
+
+    <div class="glass-card">
+
+        <h3 class="mb-4">
+
+            <i class="fa-solid fa-file-signature"></i>
+
+            Recent Claims
+
+        </h3>
+
+        <div class="list-group">
+
+            {% for claim in claims %}
+
+            <div class="list-group-item bg-transparent text-light border-secondary">
+
+                <strong>{{ claim[1] }}</strong>
+
+                claimed
+
+                <b>{{ claim[4] }}</b>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+
+const ctx = document.getElementById('statsChart');
+
+new Chart(ctx, {
+
+    type:'bar',
+
+    data:{
+
+        labels:['Lost','Found','Claims'],
+
+        datasets:[{
+
+            label:'CampusConnect',
+
+            data:[
+                {{ lost_count }},
+                {{ found_count }},
+                {{ claim_count }}
+            ],
+
+            backgroundColor:[
+                '#3b82f6',
+                '#22c55e',
+                '#f59e0b'
+            ],
+
+            borderRadius:10
+
+        }]
+
+    },
+
+    options:{
+
+        responsive:true,
+
+        plugins:{
+
+            legend:{
+
+                labels:{
+
+                    color:'white'
+
+                }
+
+            }
+
+        },
+
+        scales:{
+
+            y:{
+
+                beginAtZero:true,
+
+                ticks:{color:'white'},
+
+                grid:{color:'rgba(255,255,255,.08)'}
+
+            },
+
+            x:{
+
+                ticks:{color:'white'},
+
+                grid:{color:'rgba(255,255,255,.08)'}
+
+            }
+
+        }
+
+    }
+
+});
+
+</script>
+
+{% endblock %}

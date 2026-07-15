@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container py-5">
+
+    <div class="row justify-content-center">
+
+        <div class="col-lg-8">
+
+            <div class="glass-card p-4">
+
+                {% if item["image"] %}
+                <img
+                    src="{{ url_for('static', filename='uploads/' + item["image"]) }}"
+                    class="img-fluid rounded mb-4">
+                {% endif %}
+
+                <h2>{{ item["item_name"] }}</h2>
+
+                <span class="badge bg-danger mb-3">
+                    {{ item["category"] }}
+                </span>
+
+                <p>{{ item["description"] }}</p>
+
+                <hr>
+
+                <p><strong>📍 Location:</strong> {{ item["location"] }}</p>
+
+                <p><strong>📅 Date:</strong> {{ item["date"] }}</p>
+
+                <p><strong>👤 Owner:</strong> {{ item["owner"] }}</p>
+
+                <p><strong>📞 Phone:</strong> {{ item["phone"] }}</p>
+
+                <hr class="my-4">
+
+                <h3>🤖 AI Possible Matches</h3>
+
+                {% if matches %}
+
+                    {% for match in matches %}
+
+                    <div class="glass-card p-3 mt-3">
+
+                        <h5>{{ match["item"]["item_name"] }}</h5>
+
+                        <p>📍 {{ match["item"]["location"] }}</p>
+
+                        <p>📅 {{ match["item"]["date"] }}</p>
+
+                        <p>👤 {{ match["item"]["finder"] }}</p>
+
+                        <span class="badge bg-success">
+                            {{ match["score"] }}% Match
+                        </span>
+
+                        <br><br>
+
+                        <a href="{{ url_for('found_details', item_id=match['item']['id']) }}"
+                           class="btn btn-primary">
+                            View Found Item
+                        </a>
+
+                    </div>
+
+                    {% endfor %}
+
+                {% else %}
+
+                    <div class="alert alert-warning mt-3">
+                        No matching found items yet.
+                    </div>
+
+                {% endif %}
+
+                <a href="{{ url_for('view_lost') }}"
+                   class="btn btn-secondary mt-4">
+                    ← Back
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,423 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<!-- HERO SECTION -->
+
+<section class="hero-section">
+
+    <div class="hero-glow glow1"></div>
+    <div class="hero-glow glow2"></div>
+
+    <div class="container">
+
+        <div class="row align-items-center">
+
+            <div class="col-lg-7" data-aos="fade-right">
+
+                <span class="badge bg-primary px-3 py-2 mb-3">
+                    AI Powered Lost & Found
+                </span>
+
+                <h1 class="hero-title">
+                    Find Lost Items
+                    <span class="gradient-text">Smarter.</span>
+                </h1>
+
+                <p class="hero-subtitle">
+                    CampusConnect AI helps students reconnect with their
+                    belongings quickly using intelligent search and smart
+                    matching.
+                </p>
+
+                <div class="mt-4">
+
+                    <a href="/report-lost" class="btn btn-primary btn-lg me-3">
+                        <i class="bi bi-exclamation-circle"></i>
+                        Report Lost
+                    </a>
+
+                    <a href="/report-found" class="btn btn-outline-light btn-lg">
+                        <i class="bi bi-check-circle"></i>
+                        Report Found
+                    </a>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-5 text-center" data-aos="zoom-in">
+
+                <img
+                    src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=700"
+                    class="hero-image img-fluid"
+                    alt="Campus">
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- STATISTICS -->
+
+<section class="mt-5">
+
+    <div class="container">
+
+        <div class="row g-4">
+
+            <div class="col-md-3">
+                <div class="glass-card text-center">
+                    <h2>150+</h2>
+                    <p>Recovered Items</p>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="glass-card text-center">
+                    <h2>300+</h2>
+                    <p>Reports</p>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="glass-card text-center">
+                    <h2>95%</h2>
+                    <p>Success Rate</p>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="glass-card text-center">
+                    <h2>24/7</h2>
+                    <p>Support</p>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- FEATURES -->
+
+<section class="mt-5">
+
+    <div class="container">
+
+        <h2 class="section-title text-center">
+            Why CampusConnect AI?
+        </h2>
+
+        <div class="row g-4 mt-2">
+
+            <!-- Feature 1 -->
+
+            <div class="col-md-4">
+
+                <div class="glass-card text-center">
+
+                    <i class="bi bi-search feature-icon"></i>
+
+                    <h4>Smart Search</h4>
+
+                    <p>
+                        Search thousands of reports within seconds using
+                        intelligent filters and keywords.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <!-- Feature 2 -->
+
+            <div class="col-md-4">
+
+                <div class="glass-card text-center">
+
+                    <i class="bi bi-cpu feature-icon"></i>
+
+                    <h4>AI Matching</h4>
+
+                    <p>
+                        Our AI suggests possible matches automatically,
+                        helping users recover lost items faster.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <!-- Feature 3 -->
+
+            <div class="col-md-4">
+
+                <div class="glass-card text-center">
+
+                    <i class="bi bi-shield-check feature-icon"></i>
+
+                    <h4>Secure Claims</h4>
+
+                    <p>
+                        Only verified users can claim items, making the
+                        process safe and reliable.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<div class="container mt-5">
+
+    <form action="/" method="GET">
+
+        <div class="row justify-content-center">
+
+            <div class="col-lg-8">
+
+                <div class="input-group">
+
+                    <input
+                        type="text"
+                        class="form-control form-control-lg"
+                        name="search"
+                        placeholder="Search by item name, category or location..."
+                        value="{{ request.args.get('search','') }}">
+
+                    <button
+                        class="btn btn-primary"
+                        type="submit">
+
+                        <i class="bi bi-search"></i>
+
+                        Search
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </form>
+
+</div>
+
+<!-- RECENT LOST ITEMS -->
+
+{% if items %}
+
+<section class="mt-5">
+
+    <div class="container">
+
+        <h2 class="section-title text-center mb-5">
+            Recent Lost Items
+        </h2>
+        <section class="mt-5">
+
+    <div class="container">
+
+        <!-- Search Form -->
+
+        <form action="/" method="GET">
+
+            <div class="row g-3 justify-content-center">
+
+                <div class="col-lg-5">
+
+                    <input
+                        type="text"
+                        class="form-control form-control-lg"
+                        name="search"
+                        placeholder="Search items..."
+                        value="{{ request.args.get('search','') }}">
+
+                </div>
+
+                <div class="col-lg-3">
+
+                    <select
+                        class="form-select form-select-lg"
+                        name="category">
+
+                        <option value="">All Categories</option>
+
+                        <option value="Bag">Bag</option>
+                        <option value="Wallet">Wallet</option>
+                        <option value="Phone">Phone</option>
+                        <option value="Laptop">Laptop</option>
+                        <option value="Keys">Keys</option>
+                        <option value="ID Card">ID Card</option>
+
+                    </select>
+
+                </div>
+
+                <div class="col-lg-2">
+
+                    <button
+                        class="btn btn-primary btn-lg w-100"
+                        type="submit">
+
+                        Search
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </form>
+
+        <h2 class="section-title text-center mb-5">
+            Recent Lost Items
+        </h2>
+
+        <div class="row g-4">
+
+            {% if items %}
+
+            {% for item in items %}
+
+            <div class="col-lg-4 col-md-6">
+
+                <div class="glass-card item-card">
+
+                    <!-- Item Image -->
+
+                    {% if item[8] %}
+
+<img
+    src="{{ url_for('static', filename='uploads/' + item[8]) }}"
+    class="item-image"
+    alt="Lost Item">
+
+{% else %}
+
+<img
+    src="https://placehold.co/600x350/1e293b/ffffff?text=No+Image"
+    class="item-image"
+    alt="No Image">
+
+{% endif %}
+
+                    <!-- Status Badge -->
+
+                    <div class="mt-3">
+
+                        <span class="badge bg-danger">
+                            LOST
+                        </span>
+
+                    </div>
+
+                    <!-- Item Name -->
+
+                    <h4 class="mt-3">
+                        {{ item[1] }}
+                    </h4>
+
+                    <!-- Description -->
+
+                    <p class="text-secondary">
+
+                        {{ item[2][:80] }}...
+
+                    </p>
+
+                    <hr>
+
+                    <!-- Location -->
+
+                    <p>
+
+                        <i class="bi bi-geo-alt-fill text-primary"></i>
+
+                        {{ item[4] }}
+
+                    </p>
+
+                    <!-- Date -->
+
+                    <p>
+
+                        <i class="bi bi-calendar-event text-info"></i>
+
+                        {{ item[5] }}
+
+                    </p>
+
+                    <!-- Reporter -->
+
+                    <p>
+
+                        <i class="bi bi-person-fill text-success"></i>
+
+                        {{ item[6] }}
+
+                    </p>
+
+   <a href="{{ url_for('item_details', item_id=item[0]) }}"
+   class="btn btn-primary w-100">
+
+    View Details
+
+</a>
+
+                </div>
+
+            </div>
+
+            {% endfor %}
+
+            {% else %}
+
+            <div class="col-12">
+
+                <div class="glass-card text-center">
+
+                    <i class="bi bi-inbox display-1"></i>
+
+                    <h3 class="mt-4">
+
+                        No Lost Items Found
+
+                    </h3>
+
+                    <p>
+
+                        Be the first to report one!
+
+                    </p>
+
+                </div>
+
+            </div>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+</section>
+            
+
+{% endif %}
+
+{% endblock %}
