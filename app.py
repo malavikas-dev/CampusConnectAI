@@ -58,7 +58,7 @@ from flask import Flask
 from flask_mail import Mail, Message
 
 app = Flask(__name__)
-app.secret_key = "campusconnect_secret_key"
+app.secret_key = os.getenv("SECRET_KEY", "dev-only-change-this")
 app.config["UPLOAD_FOLDER"] = "static/uploads"
 
 # Brevo Mail Configuration
@@ -475,18 +475,6 @@ def my_reports():
         lost_count=count_user_lost_items(user_id)
     )
 
-@app.route("/dashboard")
-def dashboard():
-
-    if "user_id" not in session:
-        return redirect(url_for("login"))
-
-    items = get_user_lost_items(session["user_id"])
-
-    return render_template(
-        "dashboard.html",
-        items=items
-    )
 
 @app.route("/notifications")
 def notifications():

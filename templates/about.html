@@ -1,13 +1,140 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>About</title>
-</head>
-<body>
+{% extends "base.html" %}
 
-<h1>About CampusConnect</h1>
+{% block content %}
 
-<p>CampusConnect is a platform designed to help students and staff report and locate lost and found items on campus.</p>
+<div class="container py-5">
 
-</body>
-</html>
+    <div class="glass-card p-5">
+
+        <div class="text-center mb-5">
+
+            <h1 class="display-4 fw-bold">
+                About <span class="text-success">CampusConnect AI</span>
+            </h1>
+
+            <p class="lead text-light mt-3">
+                Reconnecting people with their belongings through the power of
+                Artificial Intelligence.
+            </p>
+
+        </div>
+
+        <hr class="mb-5">
+
+        <h3 class="mb-3">
+            🎯 Our Mission
+        </h3>
+
+        <p>
+            CampusConnect AI is an intelligent Lost & Found platform built to
+            simplify the recovery of misplaced belongings within educational
+            institutions. Instead of relying on traditional notice boards or
+            social media posts, the platform provides a secure, organized and
+            AI-assisted solution for reporting, matching and recovering lost
+            items.
+        </p>
+
+        <h3 class="mt-5 mb-3">
+            🚀 Key Features
+        </h3>
+
+        <ul class="list-group list-group-flush">
+
+            <li class="list-group-item bg-transparent text-light">
+                🤖 AI-powered Lost & Found Matching
+            </li>
+
+            <li class="list-group-item bg-transparent text-light">
+                🔐 Secure User Authentication
+            </li>
+
+            <li class="list-group-item bg-transparent text-light">
+                📷 Image Upload for Items
+            </li>
+
+            <li class="list-group-item bg-transparent text-light">
+                💬 Private Chat between Owner & Finder
+            </li>
+
+            <li class="list-group-item bg-transparent text-light">
+                📩 Claim Management System
+            </li>
+
+            <li class="list-group-item bg-transparent text-light">
+                🔔 Notifications & Email Alerts
+            </li>
+
+            <li class="list-group-item bg-transparent text-light">
+                📊 Admin Dashboard
+            </li>
+
+        </ul>
+
+        <h3 class="mt-5 mb-3">
+            💡 Why CampusConnect AI?
+        </h3>
+
+        <p>
+            Every year, countless personal belongings are misplaced on campuses,
+            making recovery difficult due to scattered communication channels.
+            CampusConnect AI centralizes the entire process, making it faster,
+            smarter, and more reliable for both students and staff.
+        </p>
+
+        <h3 class="mt-5 mb-3">
+            🛠 Technology Stack
+        </h3>
+
+        <div class="row text-center">
+
+            <div class="col-md-3 mb-3">
+                <div class="glass-card p-3">
+                    🐍<br>
+                    Python & Flask
+                </div>
+            </div>
+
+            <div class="col-md-3 mb-3">
+                <div class="glass-card p-3">
+                    🗄️<br>
+                    SQLite
+                </div>
+            </div>
+
+            <div class="col-md-3 mb-3">
+                <div class="glass-card p-3">
+                    🎨<br>
+                    Bootstrap 5
+                </div>
+            </div>
+
+            <div class="col-md-3 mb-3">
+                <div class="glass-card p-3">
+                    🤖<br>
+                    AI Matching
+                </div>
+            </div>
+
+        </div>
+
+        <div class="text-center mt-5">
+
+            <h4>
+                Built with ❤️ by
+            </h4>
+
+            <h3 class="text-success">
+                Malavika S
+            </h3>
+
+            <p class="text-secondary">
+                B.Tech Computer Science Engineering Student
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
